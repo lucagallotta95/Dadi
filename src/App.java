@@ -6,16 +6,17 @@ public class App {
         Random rdn = new Random();
 
         int punteggioUtente, punteggioPC, lancioUtente1, lancioUtente2, lancioPC1, lancioPC2, turnoUtente, turnoPC;
-        lancioUtente1 = rdn.nextInt(6) + 1;
-        lancioUtente2 = rdn.nextInt(6) + 1;
-        lancioPC1 = rdn.nextInt(6) + 1;
-        lancioPC2 = rdn.nextInt(6) + 1;
-        punteggioUtente = lancioUtente1 + lancioUtente2;
-        punteggioPC = lancioPC1 + lancioPC2;
         turnoUtente = 0;
         turnoPC = 0;
 
         for (int index = 0; index < 3; index++) {
+
+            lancioUtente1 = rdn.nextInt(6) + 1;
+            lancioUtente2 = rdn.nextInt(6) + 1;
+            lancioPC1 = rdn.nextInt(6) + 1;
+            lancioPC2 = rdn.nextInt(6) + 1;
+            punteggioUtente = lancioUtente1 + lancioUtente2;
+            punteggioPC = lancioPC1 + lancioPC2;
 
             System.out
                     .println("Utente ha lanciato " + lancioUtente1 + " e " + lancioUtente2 + " totale "
@@ -25,7 +26,7 @@ public class App {
 
             if (punteggioUtente > punteggioPC) {
                 System.out.println("Ha vinto l'utente");
-
+                turnoUtente++;
             } else if (punteggioUtente == punteggioPC) {
                 System.out.println("Pareggio");
 
@@ -35,19 +36,17 @@ public class App {
 
             }
 
-        }   if (turnoUtente > turnoPC) {
-                System.out.println("L'utente ha vinto la partita");
-            
-        }   else if (turnoUtente == turnoPC) {
-                System.out.println("Pareggio");
+        }
+        if (turnoUtente > turnoPC) {
+            System.out.println("L'utente ha vinto la partita");
 
-        } else { 
-                System.out.println("Vince il PC");
+        } else if (turnoUtente == turnoPC) {
+            System.out.println("Pareggio");
+
+        } else {
+            System.out.println("Vince il PC");
 
         }
 
-
-        
-
-    }   
+    }
 }
