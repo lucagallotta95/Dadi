@@ -12,22 +12,26 @@ public class App {
         double soldi, puntata;
         soldi = 100;
 
+        System.out.println("-------------------------------");
+        System.out.println("Benvenuto al gioco dei dadi!");
+        System.out.println("-------------------------------");
+        System.out.println("Saldo attuale: " + soldi + "€");
+
         do {
-            System.out.println("Soldi " + soldi);
 
             do {
                 System.out.println("Quanto vuoi puntare?");
                 puntata = sc.nextDouble();
                 sc.nextLine();
-                
-                if (puntata <= soldi) {
+
+                if (puntata <= soldi && puntata > 0) {
                     System.out.println("Iniziamo a giocare");
 
                 } else {
-                    System.out.println("Non hai abbastanza fondi");
+                    System.out.println("Puntata non valida, minimo 1€, massimo " + soldi);
                 }
 
-            } while (puntata > soldi);
+            } while (puntata > soldi || puntata <= 0);
             continua = "no";
             turnoUtente = 0;
             turnoPC = 0;
@@ -40,11 +44,9 @@ public class App {
                 lancioPC2 = rdn.nextInt(6) + 1;
                 punteggioUtente = lancioUtente1 + lancioUtente2;
                 punteggioPC = lancioPC1 + lancioPC2;
-
-                System.out
-                        .println("Utente ha lanciato " + lancioUtente1 + " e " + lancioUtente2 + " totale "
-                                + punteggioUtente);
-
+                
+                System.out.println("\nTurno: " + (index + 1));
+                System.out.println("Utente ha lanciato " + lancioUtente1 + " e " + lancioUtente2 + " totale " + punteggioUtente);
                 System.out.println("PC ha lanciato " + lancioPC1 + " e " + lancioPC2 + " totale " + punteggioPC);
 
                 if (punteggioUtente > punteggioPC) {
@@ -52,7 +54,6 @@ public class App {
                     turnoUtente++;
                 } else if (punteggioUtente == punteggioPC) {
                     System.out.println("Pareggio");
-
                 } else {
                     System.out.println("Vince il PC");
                     turnoPC++;
@@ -61,27 +62,27 @@ public class App {
 
             }
             if (turnoUtente > turnoPC) {
-                System.out.println("Hai vinto " + puntata);
+                System.out.println("\nComplimenti! Hai vinto la partita e guadagnato: " + puntata + "€");
                 soldi = soldi + puntata;
 
             } else if (turnoUtente == turnoPC) {
-                System.out.println("Pareggio");
-
+                System.out.println("La partita è finita in pareggio");
             } else {
-                System.out.println("Hai perso " + puntata);
+                System.out.println("\nIl computer ha vinto la partita e hai perso: " + puntata + "€");
                 soldi = soldi - puntata;
-
             }
-            
+
             if (soldi > 0) {
-                System.out.println("Vuoi continuare a giocare?");
+                System.out.print("\nHai " + soldi + "€." +" Vuoi giocare un'altra partita? (si/no): ");
+
                 continua = sc.nextLine();
             } else {
-                System.out.println("Non hai i soldi");
+                System.out.println("\nSaldo esaurito. Non puoi più giocare.");
+
             }
 
         } while (continua.equalsIgnoreCase("si"));
-            System.out.println("Grazie per aver giocato");
+        System.out.println("\nEsci con: " + soldi + "€. Grazie per aver giocato!");
 
         sc.close();
 
