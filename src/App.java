@@ -9,8 +9,26 @@ public class App {
         String continua;
 
         int punteggioUtente, punteggioPC, lancioUtente1, lancioUtente2, lancioPC1, lancioPC2, turnoUtente, turnoPC;
+        double soldi, puntata;
+        soldi = 100;
 
         do {
+            System.out.println("Soldi " + soldi);
+
+            do {
+                System.out.println("Quanto vuoi puntare?");
+                puntata = sc.nextDouble();
+                sc.nextLine();
+                
+                if (puntata <= soldi) {
+                    System.out.println("Iniziamo a giocare");
+
+                } else {
+                    System.out.println("Non hai abbastanza fondi");
+                }
+
+            } while (puntata > soldi);
+            continua = "no";
             turnoUtente = 0;
             turnoPC = 0;
 
@@ -43,19 +61,27 @@ public class App {
 
             }
             if (turnoUtente > turnoPC) {
-                System.out.println("L'utente ha vinto la partita");
+                System.out.println("Hai vinto " + puntata);
+                soldi = soldi + puntata;
 
             } else if (turnoUtente == turnoPC) {
                 System.out.println("Pareggio");
 
             } else {
-                System.out.println("Vince il PC");
+                System.out.println("Hai perso " + puntata);
+                soldi = soldi - puntata;
 
             }
-            System.out.println("Vuoi continuare a giocare?");
-            continua = sc.nextLine();
+            
+            if (soldi > 0) {
+                System.out.println("Vuoi continuare a giocare?");
+                continua = sc.nextLine();
+            } else {
+                System.out.println("Non hai i soldi");
+            }
 
         } while (continua.equalsIgnoreCase("si"));
+            System.out.println("Grazie per aver giocato");
 
         sc.close();
 
